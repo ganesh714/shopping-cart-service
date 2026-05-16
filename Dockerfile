@@ -8,5 +8,6 @@ RUN ./mvnw clean package -DskipTests
 # Stage 2: Run the application
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
+RUN apk add --no-cache curl
 COPY --from=build /app/target/*.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
